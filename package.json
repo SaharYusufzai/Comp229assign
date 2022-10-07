@@ -1,0 +1,16 @@
+{
+  "name": "portfolio-site-assignment",
+  "version": "1.0.0",
+  "description": "Portfolio site Assignment",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node src/index.js"
+  },
+  "author": "Sahar Yusufzai",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.8",
+    "express": "^4.18.1"
+  }
+}
