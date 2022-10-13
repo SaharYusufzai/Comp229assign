@@ -2,6 +2,7 @@
 const express = require('express')
 const routes = require('../routes/routes')
 const path = require('path')
+const authRoutes = require('../routes/auth')
 const { application } = require('express')
 
 const PORT = process.env.PORT || 3000
@@ -16,6 +17,10 @@ const app = express()
 app.set('view engine', 'ejs')
 // Routes 
 app.use('/', routes)
+app.use('/api', authRoutes)
+
+// Database Connection
+require('../database/connection')
 
 // Static Path Inclusion 
 app.use(express.static(staticPath))

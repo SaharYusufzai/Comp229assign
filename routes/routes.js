@@ -19,4 +19,11 @@ router.get('/services', (req, res, next) => {
     res.render('services')
 })
 
+router.get('/login', (req, res, next) => {
+    res.render('signIn')
+})
+router.get('/contactList', (req, res, next) => {
+    res.render('contactList')
+})
+
 module.exports = router
