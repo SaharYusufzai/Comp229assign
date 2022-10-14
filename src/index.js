@@ -4,7 +4,7 @@ const routes = require('../routes/routes')
 const path = require('path')
 const authRoutes = require('../routes/auth')
 const cookieParser = require('cookie-parser')
-const Contact = require('../models/contact')
+const contactRoutes = require('../routes/contact')
 
 const PORT = process.env.PORT || 3000
 
@@ -25,6 +25,7 @@ app.set('view engine', 'ejs')
 // Routes 
 app.use('/', routes)
 app.use('/api', authRoutes)
+app.use('/api/contact', contactRoutes)
 
 
 
