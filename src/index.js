@@ -3,7 +3,8 @@ const express = require('express')
 const routes = require('../routes/routes')
 const path = require('path')
 const authRoutes = require('../routes/auth')
-const { application } = require('express')
+const cookieParser = require('cookie-parser')
+const Contact = require('../models/contact')
 
 const PORT = process.env.PORT || 3000
 
@@ -12,6 +13,12 @@ const staticPath = path.join(__dirname, '../public')
 
 // express application initialization 
 const app = express()
+app.use(cookieParser())
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
+
+// Database Connection
+require('../database/connection')
 
 // View Engine setup 
 app.set('view engine', 'ejs')
@@ -19,8 +26,7 @@ app.set('view engine', 'ejs')
 app.use('/', routes)
 app.use('/api', authRoutes)
 
-// Database Connection
-require('../database/connection')
+
 
 // Static Path Inclusion 
 app.use(express.static(staticPath))
