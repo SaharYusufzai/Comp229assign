@@ -29,10 +29,10 @@ router.get('/', async (req, res) => {
     try {
         if (req.query.id) {
             const users = await Contact.find({ _id: req.query.id })
-            res.send(users)
+            res.status(200)send(users)
         } else {
             const users = await Contact.find().sort({ name: 1 })
-            res.send(users)
+            res.status(200)send(users)
         }
 
 

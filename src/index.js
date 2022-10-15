@@ -22,6 +22,7 @@ require('../database/connection')
 
 // View Engine setup 
 app.set('view engine', 'ejs')
+
 // Routes 
 app.use('/', routes)
 app.use('/api', authRoutes)
