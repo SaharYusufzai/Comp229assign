@@ -32,7 +32,7 @@ router.get('/login', (req, res, next) => {
 router.get('/contactList', auth, async (req, res, next) => {
     try {
         const users = await axios.get('http://localhost:3000/api/contact')
-        res.render('contactList', { data: users.data })
+        res.status(200).render('contactList', { data: users.data })
     } catch (error) {
         res.status(500).send({ message: "Database Not ACCESSIBLE" })
     }
