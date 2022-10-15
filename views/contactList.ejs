@@ -64,10 +64,27 @@
                 </thead>
                 <tbody>
                     <%- include('partials/contact_Row.ejs') %>
-                        <%- include('partials/contact_Row.ejs') %>
-                            <%- include('partials/contact_Row.ejs') %>
                 </tbody>
             </table>
+            <script>
+                const btn = document.getElementsByClassName('delete');
+                for (var i = 0; i < btn.length; i++) {
+                    (function (index) {
+                        btn[i].addEventListener('click', async (e) => {
+                            const id = e.target.getAttribute('data-id');
+
+                            const res = await fetch(`http://localhost:3000/api/contact/${id}`, {
+                                method: "DELETE",
+                            })
+                            if (res.ok) {
+                                alert('Data Deleted Successfully')
+                                location.reload()
+                            }
+
+                        })
+                    })(i);
+                }
+            </script>
     </body>
 
 </html>

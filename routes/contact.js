@@ -18,7 +18,7 @@ router.post('/', async (req, res) => {
         })
 
         const createdUser = await user.save()
-        res.status(201).send(createdUser)
+        res.status(201).redirect('/contactList')
     } catch (error) {
         res.status(500).send(error)
     }
@@ -26,13 +26,12 @@ router.post('/', async (req, res) => {
 })
 // get all users
 router.get('/', async (req, res) => {
-    console.log(req.query)
     try {
         if (req.query.id) {
             const users = await Contact.find({ _id: req.query.id })
             res.send(users)
         } else {
-            const users = await Contact.find()
+            const users = await Contact.find().sort({ name: 1 })
             res.send(users)
         }
 

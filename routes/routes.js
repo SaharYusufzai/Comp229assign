@@ -1,6 +1,7 @@
 const express = require('express')
 
 const router = express.Router();
+const axios = require('axios')
 
 const auth = (req, res, next) => {
     if (!req.cookies.signed) {
@@ -28,14 +29,20 @@ router.get('/services', (req, res, next) => {
 router.get('/login', (req, res, next) => {
     res.render('signIn')
 })
-router.get('/contactList', auth, (req, res, next) => {
-    res.render('contactList')
+router.get('/contactList', auth, async (req, res, next) => {
+    try {
+        const users = await axios.get('http://localhost:3000/api/contact')
+        res.render('contactList', { data: users.data })
+    } catch (error) {
+        res.status(500).send({ message: "Database Not ACCESSIBLE" })
+    }
 })
 router.get('/add', auth, (req, res, next) => {
     res.render('addUser')
 })
-router.get('/update', auth, (req, res, next) => {
-    res.render('updateUser')
+router.get('/update', auth, async (req, res, next) => {
+    const selectedUser = await axios.get('http://localhost:3000/api/contact', { params: { id: req.query.id } })
+    res.render('updateUser', { data: selectedUser.data })
 })
 router.get('/logout', (req, res) => {
     res.clearCookie('signed');
