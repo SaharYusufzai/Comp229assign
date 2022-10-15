@@ -8,6 +8,10 @@
     "start": "node src/index.js",
     "dev": "nodemon src/index.js"
   },
+  "engines": {
+    "node": "16.16.0",
+    "npm": "8.13.2"
+  },
   "author": "Sahar Yusufzai",
   "license": "ISC",
   "dependencies": {
