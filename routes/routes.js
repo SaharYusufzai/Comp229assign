@@ -31,7 +31,7 @@ router.get('/login', (req, res, next) => {
 })
 router.get('/contactList', auth, async (req, res, next) => {
     try {
-        const users = await axios.get('http://localhost:3000/api/contact')
+        const users = await axios.get('https://compassign229.herokuapp.com/api/contact')
         res.status(200).render('contactList', { data: users.data })
     } catch (error) {
         res.status(500).send({ message: "Database Not ACCESSIBLE" })
@@ -41,7 +41,7 @@ router.get('/add', auth, (req, res, next) => {
     res.render('addUser')
 })
 router.get('/update', auth, async (req, res, next) => {
-    const selectedUser = await axios.get('http://localhost:3000/api/contact', { params: { id: req.query.id } })
+    const selectedUser = await axios.get('https://compassign229.herokuapp.com/api/contact', { params: { id: req.query.id } })
     res.render('updateUser', { data: selectedUser.data })
 })
 router.get('/logout', (req, res) => {
